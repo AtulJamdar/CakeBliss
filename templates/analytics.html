@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5 animate__animated animate__fadeIn">
+    <h2 class="mb-4">Business Analytics</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h5>Order Status Distribution</h5>
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h5>Cake Sales by Type</h5>
+                <canvas id="cakeChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const statusLabels = {{ labels | tojson }};
+    const statusValues = {{ values | tojson }};
+    const cakeData = {{ cakes | tojson }};
+
+    new Chart(document.getElementById('statusChart'), {
+        type: 'pie',
+        data: {
+            labels: statusLabels,
+            datasets: [{
+                data: statusValues,
+                backgroundColor: ['#ffcd56', '#4bc0c0', '#ff6384']
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    new Chart(document.getElementById('cakeChart'), {
+        type: 'bar',
+        data: {
+            labels: cakeData.map(c => c.cake_name),
+            datasets: [{
+                label: 'Units Sold',
+                data: cakeData.map(c => c.count),
+                backgroundColor: '#36a2eb'
+            }]
+        },
+        options: { responsive: true }
+    });
+</script>
+{% endblock %}

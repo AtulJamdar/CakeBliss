@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card p-4 shadow-lg animate__animated animate__zoomIn" style="max-width: 400px; width: 100%; border-radius: 20px;">
+        <div class="text-center mb-4">
+            <i class="fas fa-lock text-primary fa-3x"></i>
+            <h2 class="mt-2">Login</h2>
+            <p class="text-muted">Access your bakery account</p>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-danger py-2">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill py-2">Sign In</button>
+        </form>
+        <div class="text-center mt-3">
+            <small>Don't have an account? <a href="/register">Create one</a></small>
+        </div>
+    </div>
+</div>
+{% endblock %}

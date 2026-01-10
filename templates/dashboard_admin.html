@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .admin-container { display: flex; min-height: 90vh; background-color: #f4f7f6; }
+
+    /* Sidebar styling */
+    .sidebar {
+        width: 260px;
+        background: #ffffff;
+        border-right: 1px solid #e0e0e0;
+        padding: 25px 15px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    }
+    .sidebar.hidden { display: none; }
+
+    .content-area { flex-grow: 1; padding: 40px; overflow-y: auto; }
+
+    .nav-link-custom {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        color: #555;
+        text-decoration: none;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        transition: 0.3s;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    .nav-link-custom i { width: 25px; font-size: 1.1rem; }
+    .nav-link-custom:hover { background: #eef2f7; color: #0d6efd; }
+    .nav-link-custom.active { background: #0d6efd; color: white; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3); }
+
+    .section-panel { display: none; animation: fadeIn 0.4s ease; }
+    .section-panel.active { display: block; }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-btn { display: none; margin-bottom: 25px; border-radius: 50px; padding: 10px 25px; }
+    .analytics-active .back-btn { display: inline-block; }
+</style>
+
+<div class="admin-container" id="adminWrapper">
+    <div class="sidebar" id="adminSidebar">
+        <div class="text-center mb-4">
+            <h4 class="fw-bold text-primary"><i class="fas fa-user-shield me-2"></i>Admin</h4>
+            <hr>
+        </div>
+        <div class="nav-link-custom active" onclick="showSection('orders', this)">
+            <i class="fas fa-shopping-bag"></i> Orders
+        </div>
+        <div class="nav-link-custom" onclick="showSection('users', this)">
+            <i class="fas fa-users"></i> Users
+        </div>
+        <div class="nav-link-custom" onclick="showSection('cakes', this)">
+            <i class="fas fa-birthday-cake"></i> Cakes
+        </div>
+        <div class="nav-link-custom" onclick="showSection('analytics', this)">
+            <i class="fas fa-chart-pie"></i> Analytics
+        </div>
+    </div>
+
+    <div class="content-area">
+        <button class="btn btn-outline-secondary back-btn" onclick="exitAnalytics()">
+            <i class="fas fa-arrow-left me-2"></i> Exit Analytics
+        </button>
+
+        <div id="orders" class="section-panel active">
+            <h2 class="fw-bold mb-4">Customer Orders</h2>
+            <div class="card border-0 shadow-sm p-3">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User</th>
+                            <th>Cake Item</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for o in orders %}
+                        <tr>
+                            <td class="fw-bold">{{ o.username }}</td>
+                            <td>{{ o.cake_name }}</td>
+                            <td>
+                                <span class="badge rounded-pill {% if o.status == 'Pending' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                                    {{ o.status }}
+                                </span>
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ url_for('update_order', order_id=o.id) }}" class="d-flex gap-2">
+                                    <select name="status" class="form-select form-select-sm w-auto" required>
+                                        <option value="Pending" {% if o.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Completed" {% if o.status == 'Completed' %}selected{% endif %}>Completed</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="users" class="section-panel">
+            <h2 class="fw-bold mb-4">User Accounts</h2>
+            <div class="card border-0 shadow-sm p-3">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Manage Access</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td><span class="text-uppercase small fw-bold">{{ user.role }}</span></td>
+                            <td>
+                                <form action="{{ url_for('update_user_role', user_id=user.id) }}" method="post" class="d-inline-flex gap-2">
+                                    <select name="role" class="form-select form-select-sm w-auto">
+                                        <option value="user" {% if user.role == "user" %}selected{% endif %}>User</option>
+                                        <option value="admin" {% if user.role == "admin" %}selected{% endif %}>Admin</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-warning">Update</button>
+                                </form>
+                                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this user?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="cakes" class="section-panel">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Cake Inventory</h2>
+                <a href="{{ url_for('admin_add_cake') }}" class="btn btn-success rounded-pill px-4">
+                    <i class="fas fa-plus me-2"></i>Add New Product
+                </a>
+            </div>
+            <div class="card border-0 shadow-sm p-3">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Preview</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for cake in cakes %}
+                        <tr>
+                            <td class="fw-bold">{{ cake.name }}</td>
+                            <td>₹{{ cake.price }}</td>
+                            <td><img src="{{ cake.image }}" width="50" height="50" class="rounded object-fit-cover shadow-sm"></td>
+                            <td>
+                                <a href="{{ url_for('admin_edit_cake', cake_id=cake.id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a href="{{ url_for('admin_delete_cake', cake_id=cake.id) }}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Delete this cake?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="analytics" class="section-panel">
+            <h2 class="fw-bold mb-4">Sales & Performance</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <h5 class="text-muted mb-4 text-center">Order Status Distribution</h5>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <h5 class="text-muted mb-4 text-center">Cake Sales by Type</h5>
+                        <canvas id="cakeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function showSection(sectionId, element) {
+        const sidebar = document.getElementById('adminSidebar');
+        const wrapper = document.getElementById('adminWrapper');
+
+        document.querySelectorAll('.section-panel').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.nav-link-custom').forEach(link => link.classList.remove('active'));
+
+        if (sectionId === 'analytics') {
+            sidebar.classList.add('hidden');
+            wrapper.classList.add('analytics-active');
+        } else {
+            sidebar.classList.remove('hidden');
+            wrapper.classList.remove('analytics-active');
+        }
+
+        document.getElementById(sectionId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    function exitAnalytics() {
+        const ordersBtn = document.querySelector('[onclick*="orders"]');
+        showSection('orders', ordersBtn);
+    }
+
+    // Chart Data passed from Flask app.py
+    const statusLabels = {{ labels | tojson if labels else [] }};
+    const statusValues = {{ values | tojson if values else [] }};
+    const cakeData = {{ cakes_json | tojson if cakes_json else [] }};
+
+    new Chart(document.getElementById('statusChart'), {
+        type: 'doughnut',
+        data: {
+            labels: statusLabels,
+            datasets: [{
+                data: statusValues,
+                backgroundColor: ['#ffcd56', '#4bc0c0', '#ff6384'],
+                hoverOffset: 4
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('cakeChart'), {
+        type: 'bar',
+        data: {
+            labels: cakeData.map(c => c.cake_name),
+            datasets: [{
+                label: 'Quantity Sold',
+                data: cakeData.map(c => c.count),
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1
+            }]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+</script>
+
+{% endblock %}

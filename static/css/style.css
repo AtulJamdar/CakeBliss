@@ -1,0 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+/* Ensure the navbar doesn't cover the top of the sections */
+section {
+    scroll-margin-top: 70px;
+}

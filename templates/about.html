@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-light py-5 mb-5 border-bottom overflow-hidden">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="text-primary fw-bold text-uppercase tracking-widest mb-2 d-block">Est. 2025</span>
+                <h1 class="display-3 fw-bold text-dark mb-4">Baking Joy Into <br><span class="text-primary">Every Slice.</span></h1>
+                <p class="lead text-muted mb-4">At Cake Bliss, we don't just bake cakes; we craft edible art that celebrates life’s most precious moments.</p>
+            </div>
+            <div class="col-lg-6 position-relative" data-aos="fade-left">
+                <div class="rounded-4 overflow-hidden shadow-lg transform-rotate-sm">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800" class="img-fluid" alt="Our Bakery">
+                </div>
+                <div class="position-absolute bottom-0 start-0 bg-white p-4 shadow rounded-3 m-3 d-none d-md-block animate__animated animate__bounceInUp animate__delay-1s">
+                    <h5 class="fw-bold mb-0">100% Organic</h5>
+                    <small class="text-muted">Locally Sourced Ingredients</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+            <h2 class="display-4 fw-bold text-primary mb-1">50+</h2>
+            <p class="text-uppercase fw-bold small tracking-widest text-muted">Unique Flavors</p>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+            <h2 class="display-4 fw-bold text-primary mb-1">10k+</h2>
+            <p class="text-uppercase fw-bold small tracking-widest text-muted">Happy Clients</p>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+            <h2 class="display-4 fw-bold text-primary mb-1">15+</h2>
+            <p class="text-uppercase fw-bold small tracking-widest text-muted">Expert Chefs</p>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row align-items-center g-5">
+        <div class="col-md-6 order-md-2" data-aos="fade-left">
+            <h2 class="display-5 fw-bold mb-4">The Secret is in <br>the Ingredients</h2>
+            <div class="d-flex mb-4">
+                <div class="me-3 mt-1"><i class="fas fa-check-circle text-success fa-lg"></i></div>
+                <div>
+                    <h5 class="fw-bold">No Artificial Preservatives</h5>
+                    <p class="text-muted">Our cakes are baked fresh daily to order, ensuring you get the purest taste without chemicals.</p>
+                </div>
+            </div>
+            <div class="d-flex mb-4">
+                <div class="me-3 mt-1"><i class="fas fa-check-circle text-success fa-lg"></i></div>
+                <div>
+                    <h5 class="fw-bold">Traditional Methods</h5>
+                    <p class="text-muted">We use slow-baking techniques passed down through generations for that perfect moist texture.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?w=600" class="img-fluid rounded-4 shadow-sm" alt="Chef at work">
+        </div>
+    </div>
+</div>
+
+<div class="container my-5" data-aos="flip-up">
+    <div class="bg-primary text-white p-5 rounded-5 text-center shadow-lg position-relative overflow-hidden">
+        <div class="position-relative" style="z-index: 1;">
+            <h2 class="display-6 fw-bold mb-3">Want a Custom Masterpiece?</h2>
+            <p class="mb-4 opacity-75">Our master decorators are ready to bring your dream cake to life.</p>
+            <a href="/contact" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-primary">Contact Us Now</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tracking-widest { letter-spacing: 0.15rem; }
+    .transform-rotate-sm { transform: rotate(2deg); transition: 0.3s; }
+    .transform-rotate-sm:hover { transform: rotate(0deg); }
+    .bg-light { background-color: #f9fbfd !important; }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        AOS.init({ duration: 800, once: true });
+    });
+</script>
+{% endblock %}

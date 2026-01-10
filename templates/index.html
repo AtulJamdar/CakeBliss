@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="home" class="hero-section d-flex align-items-center position-relative overflow-hidden" style="min-height: 90vh;">
+    <video autoplay muted loop playsinline class="position-absolute w-100 h-100" style="object-fit: cover; z-index: -1; filter: brightness(0.4);">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-melted-chocolate-on-a-cake-1534-large.mp4" type="video/mp4">
+    </video>
+
+    <div class="container text-white text-center animate__animated animate__zoomIn">
+        <span class="badge rounded-pill bg-primary px-3 py-2 mb-3 shadow">PREMIUM QUALITY SINCE 2025</span>
+        <h1 class="display-1 fw-bold mb-3 tracking-tight">Crafting Sweet <span class="text-primary">Memories</span></h1>
+        <p class="lead fs-4 mb-5 opacity-75">Experience the art of artisanal baking with locally sourced organic ingredients delivered to your door.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/shop" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg transition-transform hover-up">
+                Order Your Cake
+            </a>
+            <a href="#about" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 transition-transform">
+                Our Story
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5 py-5" id="features">
+    <div class="text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase tracking-widest">The Bakery Experience</h6>
+        <h2 class="display-5 fw-bold">Why Cake Bliss?</h2>
+    </div>
+
+    <div class="row text-center g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="p-5 rounded-4 border-0 shadow-sm h-100 bg-white hover-shadow transition">
+                <div class="icon-box mb-4 mx-auto bg-primary-light rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-birthday-cake fa-2x text-primary"></i>
+                </div>
+                <h4 class="fw-bold">Artisanal Designs</h4>
+                <p class="text-muted">Every cake is hand-crafted by master pastry chefs to be a unique masterpiece of flavor and design.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="p-5 rounded-4 border-0 shadow-sm h-100 bg-white hover-shadow transition">
+                <div class="icon-box mb-4 mx-auto bg-success-light rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-shipping-fast fa-2x text-success"></i>
+                </div>
+                <h4 class="fw-bold">Express Delivery</h4>
+                <p class="text-muted">Real-time order tracking and temperature-controlled delivery to ensure freshness on arrival.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="p-5 rounded-4 border-0 shadow-sm h-100 bg-white hover-shadow transition">
+                <div class="icon-box mb-4 mx-auto bg-warning-light rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="fas fa-shield-alt fa-2x text-warning"></i>
+                </div>
+                <h4 class="fw-bold">Secure Ordering</h4>
+                <p class="text-muted">Encrypted payments and role-based access control keep your personal information safe and private.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="about" class="bg-light py-5 border-bottom overflow-hidden">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="text-primary fw-bold text-uppercase tracking-widest mb-2 d-block">Est. 2025</span>
+                <h1 class="display-3 fw-bold text-dark mb-4">Baking Joy Into <br><span class="text-primary">Every Slice.</span></h1>
+                <p class="lead text-muted mb-4 fs-5">At Cake Bliss, we don't just bake cakes; we craft edible art that celebrates life’s most precious moments.</p>
+            </div>
+            <div class="col-lg-6 position-relative" data-aos="fade-left">
+                <div class="rounded-4 overflow-hidden shadow-lg transform-rotate-sm">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800" class="img-fluid" alt="Our Bakery">
+                </div>
+                <div class="position-absolute bottom-0 start-0 bg-white p-4 shadow rounded-3 m-3 d-none d-md-block">
+                    <h5 class="fw-bold mb-0">100% Organic</h5>
+                    <small class="text-muted">Locally Sourced Ingredients</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-5 bg-white overflow-hidden">
+    <div class="bg-dark text-white py-5 mb-5 position-relative">
+        <div class="container py-5 text-center position-relative" style="z-index: 2;">
+            <h6 class="text-primary fw-bold text-uppercase tracking-widest mb-3" data-aos="fade-down">Excellence in Every Bite</h6>
+            <h1 class="display-3 fw-bold mb-4">Our Bespoke Services</h1>
+            <p class="lead mx-auto opacity-75" style="max-width: 700px;">Tailored confectionery services for your unique vision.</p>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-lift transition">
+                    <div class="service-icon bg-primary-light text-primary rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-magic fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Bespoke Design</h4>
+                    <p class="text-muted">Work with our master decorators to create a one-of-a-kind masterpiece.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-lift transition">
+                    <div class="service-icon bg-success-light text-success rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-calendar-check fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Corporate Events</h4>
+                    <p class="text-muted">Elevate your office celebrations with custom-branded confectionery packages.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-lift transition">
+                    <div class="service-icon bg-warning-light text-warning rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="fas fa-truck-loading fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Safe Express Shipping</h4>
+                    <p class="text-muted">Specialized temperature-controlled delivery fleet ensuring pristine condition.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="container my-5 py-5">
+    <div class="text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase tracking-widest mb-3">Connect With Us</h6>
+        <h2 class="display-5 fw-bold">We’d Love to Hear From You</h2>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-lg-5" data-aos="fade-right">
+            <div class="card border-0 shadow-sm p-4 rounded-4 mb-4 bg-primary text-white">
+                <h4 class="fw-bold mb-4">Contact Information</h4>
+                <div class="d-flex mb-4">
+                    <div class="me-3"><i class="fas fa-map-marker-alt fa-lg"></i></div>
+                    <div><h6 class="fw-bold mb-1">Our Bakery</h6><p class="mb-0 opacity-75">123 Pastry Lane, Sweet Tooth City</p></div>
+                </div>
+                <div class="d-flex mb-4">
+                    <div class="me-3"><i class="fas fa-phone-alt fa-lg"></i></div>
+                    <div><h6 class="fw-bold mb-1">Phone Number</h6><p class="mb-0 opacity-75">+1 (555) 123-4567</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7" data-aos="fade-left">
+            <div class="card border-0 shadow p-5 rounded-4">
+                <form method="POST" action="/contact">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold small text-uppercase">Full Name</label>
+                            <input type="text" name="name" class="form-control bg-light border-0" placeholder="John Doe" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold small text-uppercase">Email</label>
+                            <input type="email" name="email" class="form-control bg-light border-0" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold small text-uppercase">Message</label>
+                        <textarea name="message" class="form-control bg-light border-0" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill py-3 fw-bold">
+                        <i class="fas fa-paper-plane me-2"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    html { scroll-behavior: smooth; }
+    section { scroll-margin-top: 80px; } /* Ensures header doesn't cover title */
+    .bg-primary-light { background-color: rgba(13, 110, 253, 0.1); }
+    .bg-success-light { background-color: rgba(25, 135, 84, 0.1); }
+    .bg-warning-light { background-color: rgba(255, 193, 7, 0.1); }
+    .transition { transition: all 0.3s ease; }
+    .hover-lift:hover { transform: translateY(-10px); }
+    .tracking-widest { letter-spacing: 0.2rem; }
+    .transform-rotate-sm { transform: rotate(2deg); transition: 0.3s; }
+    .transform-rotate-sm:hover { transform: rotate(0deg); }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        AOS.init({ duration: 1000, once: true });
+    });
+</script>
+
+{% endblock %}
